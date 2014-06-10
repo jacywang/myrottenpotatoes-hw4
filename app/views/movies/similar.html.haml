@@ -1,0 +1,13 @@
+-# in app/views/movies/similar.html.haml
+
+%h2 Similar movies to #{@movie.title}
+
+%ul#details
+  %li
+    Director:
+    = @movie.director
+
+= link_to 'Find Movies With Same Director', similar_movies_path(@movie)
+= link_to 'Edit', edit_movie_path(@movie)
+= button_to 'Delete', movie_path(@movie), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to movie list', movies_path
