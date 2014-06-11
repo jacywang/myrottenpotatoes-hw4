@@ -1,13 +1,18 @@
 -# in app/views/movies/similar.html.haml
 
-%h2 Similar movies to #{@movie.title}
-
-%ul#details
-  %li
-    Director:
-    = @movie.director
-
-= link_to 'Find Movies With Same Director', similar_movies_path(@movie)
-= link_to 'Edit', edit_movie_path(@movie)
-= button_to 'Delete', movie_path(@movie), :method => :delete, :confirm => 'Are you sure?'
-= link_to 'Back to movie list', movies_path
+%table#movies
+  %thead
+    %tr
+      %th{:class => @title_header}= link_to 'Movie Title', movies_path(:sort => 'title', :ratings => @selected_ratings), :id => 'title_header'
+      %th Director
+      %th Rating
+      %th{:class => @date_header}= link_to 'Release Date', movies_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
+      %th More Info
+  %tbody
+    - @movie.each do |movie|
+      %tr
+        %td= movie.title
+        %td= movie.director 
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
