@@ -65,6 +65,11 @@ class MoviesController < ApplicationController
   end
 
   def similar
-    @movie = Movie.find_similar(params[:id])
+      name = Movie.find_similar(params[:id])
+      if name == "Error"
+        redirect_to movies_path
+      else
+        @movie = name
+      end
   end
 end
