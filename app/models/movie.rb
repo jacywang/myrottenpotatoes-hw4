@@ -8,11 +8,11 @@ class Movie < ActiveRecord::Base
 
   def self.find_similar(id)
     original_movie = Movie.find(id)
-    if original_movie.director.nil?
-    	return	"Error"
+    if original_movie.director.blank?
+      return nil
     else
-	    Movie.find_all_by_director(original_movie.director)
-	  end
+      Movie.find_all_by_director(original_movie.director)
+    end
   end
 end
 
