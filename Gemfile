@@ -26,7 +26,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'therubyracer'
+  gem 'therubyracer' 
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
