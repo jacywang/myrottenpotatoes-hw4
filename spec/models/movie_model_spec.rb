@@ -23,14 +23,19 @@ describe Movie do
       end
     end
 
-     context "Sad path: the director field is empty" do
-
+    context "Sad path: the director field is empty" do
       it 'find the director field is empty' do
         @movie = FactoryGirl.create(:movie, title: 'Jacy and Pierre learn Rails', director:nil)
-        expect(Movie.find_similar(@movie.id)).to eq("Error")
+        expect(Movie.find_similar(@movie.id)).to be_nil
       end
     end
+  end
 
+  describe "#all_ratings" do 
+    it 'should return array ["G", "PG", "PG-13", "NC-17", "R"]' do
+      Movie.stub(:all_ratings).and_return(["G", "PG", "PG-13", "NC-17", "R"]) 
+      expect(Movie.all_ratings).to eq(["G", "PG", "PG-13", "NC-17", "R"])
+    end
   end
 end
   

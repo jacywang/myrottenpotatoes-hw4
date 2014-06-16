@@ -1,11 +1,8 @@
 class Movie < ActiveRecord::Base
-
   attr_accessible :title, :rating, :description, :release_date, :director
-
   def self.all_ratings
     %w(G PG PG-13 NC-17 R)
   end
-
   def self.find_similar(id)
     original_movie = Movie.find(id)
     if original_movie.director.blank?
@@ -15,4 +12,3 @@ class Movie < ActiveRecord::Base
     end
   end
 end
-
